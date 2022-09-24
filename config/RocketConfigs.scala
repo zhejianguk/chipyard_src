@@ -9,7 +9,7 @@ import freechips.rocketchip.diplomacy.{AsynchronousCrossing}
 // --------------
 
 class RocketConfig extends Config(
-  new boom.common.WithNMegaBooms(1, overrideIdOffset=Some(0)) ++                              
+  new boom.common.WithNLargeBooms(1, overrideIdOffset=Some(0)) ++                              
   new freechips.rocketchip.subsystem.WithNBigCores(6, overrideIdOffset=Some(1)) ++
   new WithGHE ++
   new chipyard.config.AbstractConfig)
