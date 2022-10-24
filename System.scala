@@ -39,7 +39,7 @@ class ChipyardSystem(implicit p: Parameters) extends ChipyardSubsystem
   val maskROMs = p(MaskROMLocated(location)).map { MaskROM.attach(_, this, CBUS) }
   //==========================================//
   //===== GuardianCouncil Function: Start ====//
-  val ghm      = p(GHMCoreLocated(location)).map { GHMCore.attach(_, this) }
+  val ghm      = p(GHMCoreLocated(location)).map { GHMCore.attach(_, this, SBUS) }
   //===== GuardianCouncil Function: End ======//
   //==========================================//
   override lazy val module = new ChipyardSystemModule(this)
