@@ -40,6 +40,7 @@ class ChipyardSystem(implicit p: Parameters) extends ChipyardSubsystem
   //==========================================//
   //===== GuardianCouncil Function: Start ====//
   val ghm      = p(GHMCoreLocated(location)).map { GHMCore.attach(_, this, PBUS) }
+  val gagg     = p(GAGGCoreLocated(location)).map { GAGGCore.attach(_, this, FBUS) }
   //===== GuardianCouncil Function: End ======//
   //==========================================//
   override lazy val module = new ChipyardSystemModule(this)
