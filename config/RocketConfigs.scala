@@ -12,18 +12,11 @@ class RocketConfig extends Config(
   new chipyard.config.WithTileFrequency(25, Some(1)) ++
   new chipyard.config.WithTileFrequency(25, Some(2)) ++
   new chipyard.config.WithTileFrequency(25, Some(3)) ++
-  new chipyard.config.WithFrontBusFrequency(25) ++
   new boom.common.WithNMegaBooms(1, overrideIdOffset=Some(0)) ++
   new WithGHE ++
-  new chipyard.config.WithFbusToSbusCrossingType(AsynchronousCrossing()) ++
-  new testchipip.WithAsynchronousSerialSlaveCrossing ++
   new freechips.rocketchip.subsystem.WithAsynchronousRocketTiles(
     AsynchronousCrossing().depth,
     AsynchronousCrossing().sourceSync) ++
-
-  new chipyard.harness.WithSimAXIMemOverSerialTL ++ // add SimDRAM DRAM model for axi4 backing memory over the SerDes link, if axi4 mem is enabled
-  new chipyard.config.WithSerialTLBackingMemory ++ // remove axi4 mem port in favor of SerialTL memory
-
   new freechips.rocketchip.subsystem.WithNGCCheckers(3, overrideIdOffset=Some(1)) ++
   new chipyard.config.AbstractConfig
   )
