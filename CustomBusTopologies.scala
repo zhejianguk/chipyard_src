@@ -39,12 +39,14 @@ case class HierarchicalMulticlockBusTopologyParams(
   pbus: PeripheryBusParams,
   fbus: FrontBusParams,
   cbus: PeripheryBusParams,
+  gbus: PeripheryBusParams,
   xTypes: SubsystemCrossingParams
 ) extends TLBusWrapperTopology(
   instantiations = List(
     (PBUS, pbus),
     (FBUS, fbus),
-    (CBUS, cbus)),
+    (CBUS, cbus),
+    (GBUS, gbus)),
   connections = List(
     (SBUS, CBUS, TLBusWrapperConnection.  crossTo(xType = xTypes.sbusToCbusXType, driveClockFromMaster = None)),
     (CBUS, PBUS, TLBusWrapperConnection.  crossTo(xType = xTypes.cbusToPbusXType, driveClockFromMaster = None)),
@@ -60,6 +62,7 @@ class WithMulticlockCoherentBusTopology extends Config((site, here, up) => {
       pbus = site(PeripheryBusKey),
       fbus = site(FrontBusKey),
       cbus = site(ControlBusKey),
+      gbus = site(GCBusKey),
       xTypes = SubsystemCrossingParams(
         sbusToCbusXType = site(SbusToCbusXTypeKey),
         cbusToPbusXType = site(CbusToPbusXTypeKey),
@@ -78,5 +81,6 @@ class WithMulticlockIncoherentBusTopology extends Config((site, here, up) => {
       pbus = site(PeripheryBusKey),
       fbus = site(FrontBusKey),
       cbus = site(ControlBusKey),
+      gbus = site(GCBusKey),
       xTypes = SubsystemCrossingParams()))
 })

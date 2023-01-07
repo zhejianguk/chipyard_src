@@ -66,7 +66,8 @@ class WithInheritBusFrequencyAssignments extends Config(
   new BusFrequencyAssignment("subsystem_pbus_\\d+".r, PeripheryBusKey) ++
   new BusFrequencyAssignment("subsystem_cbus_\\d+".r, ControlBusKey) ++
   new BusFrequencyAssignment("subsystem_fbus_\\d+".r, FrontBusKey) ++
-  new BusFrequencyAssignment("subsystem_mbus_\\d+".r, MemoryBusKey)
+  new BusFrequencyAssignment("subsystem_mbus_\\d+".r, MemoryBusKey) ++
+  new BusFrequencyAssignment("subsystem_gbus_\\d+".r, GCBusKey)
 )
 
 /**
@@ -111,6 +112,9 @@ class WithFrontBusFrequency(freqMHz: Double) extends Config((site, here, up) => 
 })
 class WithControlBusFrequency(freqMHz: Double) extends Config((site, here, up) => {
   case ControlBusKey => up(ControlBusKey, site).copy(dtsFrequency = Some(BigInt((freqMHz * 1e6).toLong)))
+})
+class WithGCBusFrequency(freqMHz: Double) extends Config((site, here, up) => {
+  case GCBusKey => up(GCBusKey, site).copy(dtsFrequency = Some(BigInt((freqMHz * 1e6).toLong)))
 })
 
 class WithRationalMemoryBusCrossing extends WithSbusToMbusCrossingType(RationalCrossing(Symmetric))

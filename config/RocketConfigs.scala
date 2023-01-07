@@ -8,18 +8,25 @@ import freechips.rocketchip.diplomacy.{AsynchronousCrossing}
 // Rocket Configs
 // --------------
 
-class RocketConfig extends Config(
-  new chipyard.config.WithTileFrequency(25, Some(1)) ++
-  new chipyard.config.WithTileFrequency(25, Some(2)) ++
-  new chipyard.config.WithTileFrequency(25, Some(3)) ++
-  new boom.common.WithNMegaBooms(1, overrideIdOffset=Some(0)) ++
-  new WithGHE ++
-  new freechips.rocketchip.subsystem.WithAsynchronousRocketTiles(
+
+ class RocketConfig extends Config(
+   new chipyard.config.WithTileFrequency(100, Some(0)) ++
+   new chipyard.config.WithTileFrequency(50, Some(1)) ++
+   new chipyard.config.WithTileFrequency(50, Some(2)) ++
+   new chipyard.config.WithTileFrequency(50, Some(3)) ++
+   new chipyard.config.WithGCBusFrequency(50) ++ 
+   new chipyard.config.WithSystemBusFrequency(100) ++
+   new chipyard.config.WithSystemBusFrequencyAsDefault ++ // All unspecified clock frequencies, notably the implicit clock, will use the sbus freq (800 MHz)
+   new WithGHE ++
+   new freechips.rocketchip.subsystem.WithAsynchronousRocketTiles(
     AsynchronousCrossing().depth,
     AsynchronousCrossing().sourceSync) ++
-  new freechips.rocketchip.subsystem.WithNGCCheckers(3, overrideIdOffset=Some(1)) ++
-  new chipyard.config.AbstractConfig
+   //  Crossing specifications
+   new boom.common.WithNMegaBooms(1, overrideIdOffset=Some(0)) ++
+   new freechips.rocketchip.subsystem.WithNGCCheckers(3, overrideIdOffset=Some(1)) ++
+   new chipyard.config.AbstractConfig
   )
+
 
 class TinyRocketConfig extends Config(
   new chipyard.config.WithTLSerialLocation(
