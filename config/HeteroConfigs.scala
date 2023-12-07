@@ -7,7 +7,7 @@ import freechips.rocketchip.config.{Config}
 // ---------------------
 
 class LargeBoomAndRocketConfig extends Config(
-  new boom.common.WithNLargeBooms(1) ++                          // single-core boom
+  new boom.common.WithNSmallBooms(1) ++                          // single-core boom
   new freechips.rocketchip.subsystem.WithNBigCores(1) ++         // single rocket-core
   new chipyard.config.AbstractConfig)
 

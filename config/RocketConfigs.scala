@@ -10,11 +10,13 @@ import freechips.rocketchip.diplomacy.{AsynchronousCrossing}
 
 
  class RocketConfig extends Config(
-   new chipyard.config.WithTileFrequency(100, Some(0)) ++
-   new chipyard.config.WithTileFrequency(50, Some(1)) ++
-   new chipyard.config.WithTileFrequency(50, Some(2)) ++
-   new chipyard.config.WithGCBusFrequency(50) ++ 
-   new chipyard.config.WithSystemBusFrequency(100) ++
+   new chipyard.config.WithTileFrequency(3000, Some(0)) ++
+   new chipyard.config.WithTileFrequency(2000, Some(1)) ++
+   new chipyard.config.WithTileFrequency(2000, Some(2)) ++
+   new chipyard.config.WithTileFrequency(2000, Some(3)) ++
+   new chipyard.config.WithTileFrequency(2000, Some(4)) ++
+   new chipyard.config.WithGCBusFrequency(2000) ++ 
+   new chipyard.config.WithSystemBusFrequency(3000) ++
    new chipyard.config.WithSystemBusFrequencyAsDefault ++
    new WithGHE ++
    new freechips.rocketchip.subsystem.WithAsynchronousRocketTiles(
@@ -22,7 +24,7 @@ import freechips.rocketchip.diplomacy.{AsynchronousCrossing}
     AsynchronousCrossing().sourceSync) ++
    //  Crossing specifications
    new boom.common.WithNMegaBooms(1, overrideIdOffset=Some(0)) ++
-   new freechips.rocketchip.subsystem.WithNGCCheckers(2, overrideIdOffset=Some(1)) ++
+   new freechips.rocketchip.subsystem.WithNGCCheckers(4, overrideIdOffset=Some(1)) ++
    new chipyard.config.AbstractConfig
   )
 
